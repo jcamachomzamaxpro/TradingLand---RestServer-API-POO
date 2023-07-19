@@ -2,6 +2,7 @@ const urlAll = "http://localhost:4000/api/tradingland/all";
 const urlAdd = "http://localhost:4000/api/tradingland/add";
 const urlDel = "http://localhost:4000/api/tradingland/del";
 const urlUpd = "http://localhost:4000/api/tradingland/upd";
+const urlSelect = "http://localhost:4000/api/tradingland/one";
 
 
 
@@ -46,6 +47,15 @@ export const deleteTraders = async (id) => {
     }
 };
 
+export const selectOne = async (id) => {
+    try {
+        const response = await fetch(`${urlSelect}/${id}`);
+        const result = await response.json();
+        return result;
+    } catch (error) {
+        console.log(error);
+    }
+}
 
 export const updateTraders = async (datos, id) => {
     try {

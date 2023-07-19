@@ -202,7 +202,7 @@
 
 
 
-  <!-- Modal -->
+  <!-- Modal Agregar Trader-->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -236,6 +236,44 @@
     </div>
   </div>
 
+
+
+
+
+    <!-- Modal EDITAR Trader-->
+<div class="modal fade" id="modalEditar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Editar Trader</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <form id="formEditar">
+              <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input type="text" class="form-control px-2 border border-secondary" id="editarNombre">
+                <input type="text" class="form-control px-2 border border-secondary" id="editarId" style="display: none;">
+              </div>
+              <div class="mb-3">
+                  <label for="edad" class="form-label">Edad</label>
+                  <input type="number" class="form-control px-2 border border-secondary" id="editarEdad">
+              </div>
+              <div class="mb-3">
+                <label for="nacionalidad" class="form-label">Nacionalidad</label>
+                <input type="text" class="form-control px-2 border border-secondary" id="editarNacionalidad">
+              </div>
+              <div class="mb-3">
+                <label for="presupuesto" class="form-label">Presupuesto</label>
+                <input type="number" class="form-control px-2 border border-secondary" id="editarPresupuesto">
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+      </div>
+      
+    </div>
+  </div>
+</div>
 
 
 

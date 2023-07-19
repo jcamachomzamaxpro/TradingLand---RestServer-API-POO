@@ -28,6 +28,16 @@ const borrarTrader = async (req, res) => {
     }
 }
 
+const selectTrader = async (req, res) => {
+    try {
+        const trader = await Trader.findOne({_id:req.params.id});
+        res.send(trader);
+    } catch (error) {
+        res.status(404);
+        res.send({error: "Trader no existe"})
+    }
+}
+
 const updateTrader = async (req, res) => {
     try {
         const trader = await Trader.findOne({_id:req.params.id});
@@ -57,4 +67,4 @@ const updateTrader = async (req, res) => {
     }
 }
 
-export { obtenerTrader, agregarTrader, borrarTrader, updateTrader };
+export { obtenerTrader, agregarTrader, selectTrader, borrarTrader, updateTrader };

@@ -1,4 +1,4 @@
-import { addTraders, allTraders, deleteTraders } from "./API.js";
+import { addTraders, allTraders, deleteTraders, selectOne, updateTraders } from "./API.js";
 
 document.addEventListener('DOMContentLoaded', loadTraders);
 
@@ -29,7 +29,7 @@ async function loadTraders() {
                 <span class="text-secondary text-xs font-weight-bold">${presupuesto}</span>
             </td>
             <td class="align-middle">
-                <a href="javascript:;" class="text-secondary font-weight-bold text-xs">
+                <a href="javascript:;" class="text-secondary font-weight-bold text-xs update" id="${_id}" data-bs-toggle="modal" data-bs-target="#modalEditar">
                     Editar
                 </a>
             </td> 
@@ -81,8 +81,8 @@ function insertarTrader(e) {
 
 
 // borrar
-const main = document.querySelector('main');
-main.addEventListener("click", borrar);
+const selectBorrar = document.querySelector('main');
+selectBorrar.addEventListener("click", borrar);
 
 function borrar(e) {
     if (e.target.classList.contains("borrar")) {
@@ -98,5 +98,68 @@ function borrar(e) {
         
 
     }
+};
+
+
+// Seleccionar para editar
+const selectUpdate = document.querySelector('main');
+selectUpdate.addEventListener('click', getInfo);
+
+
+async function getInfo(e) {
+    if (e.target.classList.contains('update')) {
+        const id = e.target.getAttribute('id');
+        const info = await selectOne(id);
+
+        const {_id, nombre, edad, presupuesto, nacionalidad} = info;
+
+
+        const editarId = document.querySelector('#editarId');
+        const editarNombre = document.querySelector('#editarNombre');
+        const editarEdad = document.querySelector('#editarEdad');
+        const editarNacionalidad = document.querySelector('#editarNacionalidad');
+        const editarPresupuesto = document.querySelector('#editarPresupuesto');
+
+        editarId.value = _id;
+        editarNombre.value = nombre;
+        editarEdad.value = edad;
+        editarNacionalidad.value = nacionalidad;
+        editarPresupuesto.value = presupuesto;
+
+        console.log(info);
+    }
+};
+
+// Update
+
+const formEditar = document.querySelector('#formEditar');
+formEditar.addEventListener('submit', update);
+
+function update(e) {
+    e.preventDefault();
+    const id = document.querySelector('#editarId').value;
+    const nombre = document.querySelector('#editarNombre').value;
+    const edad = Number(document.querySelector('#editarEdad').value);
+    const nacionalidad = document.querySelector('#editarNacionalidad').value;
+    const presupuesto = Number(document.querySelector('#editarPresupuesto').value);
+
+    const datos = {
+        id,
+        nombre,
+        edad,
+        nacionalidad,
+        presupuesto
+    };
+
+    console.log(datos);
+
+    alert("Se ha actualizado exitosamente");
+
+    return updateTraders(datos, id);
+
+    
 }
+
+
+
 
